@@ -203,4 +203,4 @@ mode "$mode_launcher"{
 exec_always feh --bg-fill ~/wp/1.jpg
 
 # keybinding to lock screen
-bindsym Control+$mod+l exec ~/.config/configfiles/i3screen.sh
+bindsym Control+$mod+l exec ~/.config/i3/i3lockscript.sh

@@ -1,8 +1,8 @@
- ;; Package install 
+;; Package install 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (require 'package)
-(add-to-list 'package-archives
+(setq package-archives
 	     '(("melpa" . "https://melpa.org/packages/")
 	       ("org" . "https://orgmode.org/elpa/")
 	       ("elpa" . "https://elpa.gnu.org/packages")))
@@ -57,7 +57,7 @@
  '(custom-safe-themes
    '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(package-selected-packages
-   '(rainbow-delimiters rainbow-delimeters doom-modeline doom-modline ivy command-log-mode gruber-darker-theme smex)))
+   '(forge magit rainbow-delimiters rainbow-delimeters doom-modeline doom-modline ivy command-log-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -73,16 +73,28 @@
 
 ;; keybindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "C-x C-b") 'buffer-menu)=
+(global-set-key (kbd "C-x C-b") 'buffer-menu)
 
 ;; window movement
-(global-set-key [M-left] 'windmove-left)          ; move to left window
-(global-set-key [M-right] 'windmove-right)        ; move to right window
-(global-set-key [M-up] 'windmove-up)              ; move to upper window
-(global-set-key [M-down] 'windmove-down)          ; move to lower window
+(global-set-key (kbd "M-<left>") 'windmove-left)       ; move to left window
+(global-set-key (kbd "M-<right>") 'windmove-right)     ; move to right window
+(global-set-key (kbd "M-<up>") 'windmove-up)           ; move to upper window
+(global-set-key (kbd "M-<down>") 'windmove-down)       ; move to lower window
 
 ;; Pretty line below
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+(use-package all-the-icons)
+
+(use-package magit
+  :commands magit-status
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package forge
+ :after magit)
+
+(setq auth-sources '("~/.authinfo"))
 

@@ -18,13 +18,21 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;;smex
+;; fonts
+;; (set-face-attribute 'default nil
+;;                     :font "FiraCode Nerd Font-10")
+;; (add-to-list 'default-frame-alist '(font . "FiraCode Nerd Font"))
+;; (add-to-list 'load-path "~/.emacs.d/unicode-fonts/")
+;; (require 'unicode-fonts)
+;; (unicode-fonts-setup)
+
+;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;;This is your old M-x.
+;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-;;basic config
+;; basic config
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -32,20 +40,26 @@
 (show-paren-mode 1)
 (scroll-bar-mode 0)
 
-;line no
+;; line no
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 
-;turn of line nomber
+;; turn of line nomber
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		shell-mode-hook
 		eshell-node-hool))
   (add-hook mode (lambda() (display-line-numbers-mode 0))))
 
-;;ido
+;; ido
 (ido-mode 1)
 (ido-everywhere 1)
+
+;; recent files
+(require 'recentf)
+(recentf-mode 1)
+(global-set-key "\C-xf" 'recentf-open-files) ;;removed preset key 'set-fill-column)
+(setq recentf-auto-cleanup 'never)
 
 ;; Themes
 (custom-set-variables
@@ -57,7 +71,7 @@
  '(custom-safe-themes
    '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(package-selected-packages
-   '(forge magit rainbow-delimiters rainbow-delimeters doom-modeline doom-modline ivy command-log-mode gruber-darker-theme smex)))
+   '(move-text multiple-cursors forge magit rainbow-delimiters rainbow-delimeters doom-modeline doom-modline ivy command-log-mode gruber-darker-theme smex)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -86,8 +100,10 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
+;; Icon
 (use-package all-the-icons)
 
+;; Git
 (use-package magit
   :commands magit-status
   :custom
@@ -98,3 +114,19 @@
 
 (setq auth-sources '("~/.authinfo"))
 
+;; multiple cursors
+(use-package multiple-cursors)
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; move text up down
+(use-package move-text)
+(require 'move-text)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
+
+;; org mode
+(use-package org)

@@ -45,12 +45,6 @@
 (global-display-line-numbers-mode t)
 (setq display-line-numbers-type 'relative)
 
-;; turn of line nomber
-(dolist (mode '(org-mode-hook
-		term-mode-hook
-		shell-mode-hook))
-  (add-hook mode (lambda() (display-line-numbers-mode 0))))
-
 ;; ido
 (ido-mode 1)
 (ido-everywhere 1)

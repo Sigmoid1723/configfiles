@@ -1,7 +1,8 @@
-;; Different theme for org mode
-(add-hook 'org-mode-hook
-   (lambda ()
-     (load-theme "doom-gruvbox" t t)))
+;;Different theme for org mode
+(add-hook  'org-mode-hook
+ 	  (lambda ()
+;; 	    (load-theme "doom-gruvbox" t t)
+ 	    (display-line-numbers-mode 0)))
 
 ;; Set faces for heading levels
 (with-eval-after-load 'org-faces
@@ -65,8 +66,4 @@
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
-
-
-
-
 

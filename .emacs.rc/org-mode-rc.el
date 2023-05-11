@@ -1,9 +1,3 @@
-;;Different theme for org mode
-(add-hook  'org-mode-hook
- 	  (lambda ()
-;; 	    (load-theme "doom-gruvbox" t t)
- 	    (display-line-numbers-mode 0)))
-
 ;; Set faces for heading levels
 (with-eval-after-load 'org-faces
  ;; (font-lock-add-keywords 'org-mode
@@ -46,11 +40,14 @@
 ;;  :commands (org-capture org-agenda)
   :hook (org-mode . efs/org-mode-setup)
   :config
-  (setq org-ellipsis " ▾"))
+  (setq org-ellipsis " ▾")
 
-  ;; (setq org-agenda-start-with-log-mode t)
-  ;; (setq org-log-done 'time)
-  ;; (setq org-log-into-drawer t))
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+
+  (setq org-agenda-files
+	'("~/.emacs.rc/OrgFiles/Tasks.org")))
 
 (use-package org-bullets
   :after org

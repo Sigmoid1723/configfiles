@@ -48,6 +48,12 @@
 (global-display-line-numbers-mode t)
 (setq display-line-numbers-type 'relative)
 
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; ido
 (ido-mode 1)
 (ido-everywhere 1)
@@ -104,9 +110,9 @@
 (global-set-key (kbd "M-<down>") 'windmove-down)       ; move to lower window
 
 ;; Pretty line below
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode 1))
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; Icon
 (use-package all-the-icons)
@@ -115,9 +121,7 @@
 (use-package magit
   :commands magit-status
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
-  (load-theme "gruber-darker" t t)
-  )
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (use-package forge
  :after magit)

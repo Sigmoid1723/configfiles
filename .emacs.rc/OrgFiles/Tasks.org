@@ -1,0 +1,11 @@
+* Active
+
+** DONE Example 1
+CLOSED: [2023-05-11 Thu 10:16] SCHEDULED: <2023-05-12 Fri>
+** TODO Example 2
+SCHEDULED: <2023-05-14 Sun>
+
+* Something
+
+shift-arrrow for toggling task between compltion , todo and regular.
+org-schedule for 

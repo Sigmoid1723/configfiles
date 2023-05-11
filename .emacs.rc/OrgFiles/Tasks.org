@@ -1,11 +1,26 @@
 * Active
 
+** NEXT Example 2                                                     :work:
+SCHEDULED: <2023-05-14 Sun>
+:PROPERTIES:
+:Effort:   5
+:END:
+** NEXT Go Home
+:PROPERTIES:
+:Effort:   20
+:END:
+
 ** DONE Example 1
 CLOSED: [2023-05-11 Thu 10:16] SCHEDULED: <2023-05-12 Fri>
-** TODO Example 2
-SCHEDULED: <2023-05-14 Sun>
-
-* Something
+* NEXT Something
+:LOGBOOK:
+- State "HOLD"       from "WAIT"       [2023-05-11 Thu 18:54]
+- State "DONE"       from "NEXT"       [2023-05-11 Thu 18:54]
+:END:
 
 shift-arrrow for toggling task between compltion , todo and regular.
-org-schedule for 
+org-schedule for
+
+org-set-tags-command C-c C-q
+
+

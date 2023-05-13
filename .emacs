@@ -21,12 +21,18 @@
 ;; load all the files
 (load "~/.emacs.rc/org-mode-rc.el")
 
+;; add language hook eglot
+;; (use-package eglot)
+(add-hook 'c-mode 'eglot-ensure)
+
 ;; sqlite3
 (require 'sqlite3)
 
 ;; font character and symbols to show in term mode
 (set-face-attribute 'default nil
-                    :font "FiraCode Nerd Font-11")
+                    ;; :font "FiraCode Nerd Font-12")
+                    :font "Iosevka-14")
+		    
 
 (add-hook 'term-exec-hook
           (function
@@ -71,9 +77,10 @@
 (setq backup-directory-alist '(("." . "~/.emacs_show")))
 
 ;; To saves which command im typing(optional)
-(use-package command-log-mode)
+(use-package command-log-mode
+  :commands command-log-mod)
 
-;; keybindings
+;; keybindings.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'buffer-menu)
 
@@ -84,12 +91,12 @@
 (global-set-key (kbd "M-<down>") 'windmove-down)       ; move to lower window
 
 ;; Pretty line below
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1))
 
 ;; Icon
-(use-package all-the-icons)
+;;(use-package all-the-icons)
 
 ;; Git
 (use-package magit
@@ -103,19 +110,33 @@
 (setq auth-sources '("~/.authinfo"))
 
 ;; multiple cursors
-(use-package multiple-cursors)
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; (use-package multiple-cursors)
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-\"") 'mc/skip-to-next-like-this)
+;; (global-set-key (kbd "C-:")  'mc/skip-to-previous-like-this)
+;; (global-set-key (kbd "C-M-j")  'mc/mark-all-dwim)
+
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C->" . mc/mark-all-like-this)
+         ("C-S-c C-S-c" . mc/edit-lines)
+	 ("C-\"" . mc/skip-to-next-like-this)
+	 ("C-:" . mc/skip-to-previous-like-this)
+	 ("C-M-j" . mc/mark-all-dwim)
+         ))
+
 
 ;; move text up down
-(use-package move-text)
-(require 'move-text)
-(global-set-key (kbd "M-p") 'move-text-up)
-(global-set-key (kbd "M-n") 'move-text-down)
-
+(use-package move-text
+  :ensure t
+  :bind(("M-p" . move-text-up)
+	("M-n" . move-text-down)))
+  
 ;; duplicate line (very usefull)
 (defun rc/duplicate-line ()
   "Duplicate current line"
@@ -131,7 +152,7 @@
 
 (global-set-key (kbd "C-,") 'rc/duplicate-line)
 
-;; themes
+;; Theme
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -139,7 +160,9 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" "e13beeb34b932f309fb2c360a04a460821ca99fe58f69e65557d6c1b10ba18c7" default)))
+   '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
+ '(package-selected-packages
+   '(gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

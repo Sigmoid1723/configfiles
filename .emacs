@@ -44,7 +44,7 @@
 (set-face-attribute 'default nil
                     ;; :font "FiraCode Nerd Font-12")
                     :font "Iosevka-14")
-		    
+
 
 (add-hook 'term-exec-hook
           (function
@@ -96,11 +96,6 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'buffer-menu)
 
-;; window movement
-(global-set-key (kbd "M-<left>") 'windmove-left)       ; move to left window
-(global-set-key (kbd "M-<right>") 'windmove-right)     ; move to right window
-(global-set-key (kbd "M-<up>") 'windmove-up)           ; move to upper window
-(global-set-key (kbd "M-<down>") 'windmove-down)       ; move to lower window
 
 ;; Pretty line below
 ;; (use-package doom-modeline
@@ -121,16 +116,7 @@
 
 (setq auth-sources '("~/.authinfo"))
 
-;; multiple cursors
-;; (use-package multiple-cursors)
-;; (require 'multiple-cursors)
-;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C-\"") 'mc/skip-to-next-like-this)
-;; (global-set-key (kbd "C-:")  'mc/skip-to-previous-like-this)
-;; (global-set-key (kbd "C-M-j")  'mc/mark-all-dwim)
-
+;; Multiple-cursors
 (use-package multiple-cursors
   :ensure t
   :bind (("C->" . mc/mark-next-like-this)
@@ -141,7 +127,6 @@
 	 ("C-:" . mc/skip-to-previous-like-this)
 	 ("C-M-j" . mc/mark-all-dwim)
          ))
-
 
 ;; move text up down
 (use-package move-text
@@ -170,11 +155,91 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(connection-local-criteria-alist
+   '(((:application eshell)
+      eshell-connection-default-profile)
+     ((:application tramp)
+      tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
+ '(connection-local-profile-alist
+   '((eshell-connection-default-profile
+      (eshell-path-env-list))
+     (tramp-connection-local-darwin-ps-profile
+      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,uid,user,gid,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state=abcde" "-o" "ppid,pgid,sess,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etime,pcpu,pmem,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (euid . number)
+       (user . string)
+       (egid . number)
+       (comm . 52)
+       (state . 5)
+       (ppid . number)
+       (pgrp . number)
+       (sess . number)
+       (ttname . string)
+       (tpgid . number)
+       (minflt . number)
+       (majflt . number)
+       (time . tramp-ps-time)
+       (pri . number)
+       (nice . number)
+       (vsize . number)
+       (rss . number)
+       (etime . tramp-ps-time)
+       (pcpu . number)
+       (pmem . number)
+       (args)))
+     (tramp-connection-local-busybox-ps-profile
+      (tramp-process-attributes-ps-args "-o" "pid,user,group,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "stat=abcde" "-o" "ppid,pgid,tty,time,nice,etime,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (user . string)
+       (group . string)
+       (comm . 52)
+       (state . 5)
+       (ppid . number)
+       (pgrp . number)
+       (ttname . string)
+       (time . tramp-ps-time)
+       (nice . number)
+       (etime . tramp-ps-time)
+       (args)))
+     (tramp-connection-local-bsd-ps-profile
+      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,euid,user,egid,egroup,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state,ppid,pgid,sid,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etimes,pcpu,pmem,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (euid . number)
+       (user . string)
+       (egid . number)
+       (group . string)
+       (comm . 52)
+       (state . string)
+       (ppid . number)
+       (pgrp . number)
+       (sess . number)
+       (ttname . string)
+       (tpgid . number)
+       (minflt . number)
+       (majflt . number)
+       (time . tramp-ps-time)
+       (pri . number)
+       (nice . number)
+       (vsize . number)
+       (rss . number)
+       (etime . number)
+       (pcpu . number)
+       (pmem . number)
+       (args)))
+     (tramp-connection-local-default-shell-profile
+      (shell-file-name . "/bin/sh")
+      (shell-command-switch . "-c"))
+     (tramp-connection-local-default-system-profile
+      (path-separator . ":")
+      (null-device . "/dev/null"))))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
    '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(package-selected-packages
-   '(paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme)))
+   '(sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -238,6 +303,10 @@
 
 (add-hook 'emacs-lisp-mode-hook  'rc/turn-on-paredit)
 
+;; window movement
+(global-set-key (kbd "M-<left>") 'other-window)
+(global-set-key (kbd "M-<right>") 'other-window) 
+
 ;; kill autoload buffers
 (defun rc/kill-autoloads-buffers ()
   (interactive)
@@ -247,7 +316,95 @@
         (kill-buffer buffer)
         (message "Killed autoloads buffer %s" name)))))
 
+;; Company mode(for autofilling)
+(use-package company
+  :ensure t
+  :commands company-mode)
+
+;; Packages that don't require
+(use-package scala-mode
+  :commands scala-mode)
+(use-package d-mode
+  :commands d-mode)
+(use-package yaml-mode
+  :commands yaml-mode)
+(use-package glsl-mode
+  :commands glsl-mode)
+(use-package tuareg
+  :commands tuareg)
+(use-package lua-mode
+  :commands lua-mode)
+(use-package less-css-mode
+  :commands less-css-mode)
+(use-package graphviz-dot-mode
+  :commands graphviz-dot-mode)
+(use-package clojure-mode
+  :commands clojure-mode)
+(use-package cmake-mode
+  :commands cmake-mode)
+(use-package rust-mode
+  :commands rust-mode)
+(use-package csharp-mode
+  :commands csharp-mode)
+(use-package nim-mode
+  :commands nim-mode)
+(use-package jinja2-mode
+  :commands jinja2-mode)
+(use-package markdown-mode
+  :commands markdown-mode)
+(use-package purescript-mode
+  :commands purescript-mode)
+(use-package nix-mode
+  :commands nix-mode)
+(use-package dockerfile-mode
+  :commands dockerfile-mode)
+;; (use-package love-minor-mode
+;;   :commands love-minor-mode)
+(use-package toml-mode
+  :commands toml-mode)
+(use-package nginx-mode
+  :commands nginx-mode)
+(use-package kotlin-mode
+  :commands kotlin-mode)
+(use-package go-mode
+  :commands go-mode)
+(use-package php-mode
+  :commands php-mode)
+(use-package racket-mode
+  :commands racket-mode)
+(use-package qml-mode
+  :commands qml-mode)
+(use-package ag
+  :commands ag)
+(use-package hindent
+ :commands hindent)
+(use-package elpy
+ :commands elpy)
+(use-package typescript-mode
+ :commands typescript-mode)
+(use-package rfc-mode
+ :commands rfc-mode)
+;; (use-package sml-mode
+;;  :commands sml-mode)
+
+;; kill autoload buffers
+(defun rc/kill-autoloads-buffers ()
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (let ((name (buffer-name buffer)))
+      (when (string-match-p "-autoloads.el" name)
+        (kill-buffer buffer)
+        (message "Killed autoloads buffer %s" name)))))
+
+;;; tramp
+;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
+(setq tramp-auto-save-directory "/tmp")
+
+;; confirm before exiting emacs
+(setq confirm-kill-emacs 'y-or-n-p)
+
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 40 1000 1000))
+
 
 

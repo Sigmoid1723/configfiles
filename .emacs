@@ -79,18 +79,12 @@
 (ido-mode 1)
 (ido-everywhere 1)
 
-;; recent files
-(require 'recentf)
-(recentf-mode 1)
-(global-set-key "\C-xf" 'recentf-open-files) ;;removed preset key 'set-fill-column)
-(setq recentf-auto-cleanup 'never)
-
 ;; backup emacs
 (setq backup-directory-alist '(("." . "~/.emacs_show")))
 
-;; To saves which command im typing(optional)
-(use-package command-log-mode
-  :commands command-log-mod)
+;; ;; To saves which command im typing(optional)
+;; (use-package command-log-mode
+;;   :commands command-log-mode)
 
 ;; keybindings.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -269,7 +263,7 @@
 
 (yas-global-mode 1)
 
-;; white spacd mode
+;; white space mode
 (defun rc/set-up-whitespace-handling ()
   (interactive)
   (whitespace-mode 1)
@@ -319,7 +313,7 @@
 ;; Company mode(for autofilling)
 (use-package company
   :ensure t
-  :commands company-mode)
+  :config (global-company-mode 1))
 
 ;; Packages that don't require
 (use-package scala-mode
@@ -387,14 +381,7 @@
 ;; (use-package sml-mode
 ;;  :commands sml-mode)
 
-;; kill autoload buffers
-(defun rc/kill-autoloads-buffers ()
-  (interactive)
-  (dolist (buffer (buffer-list))
-    (let ((name (buffer-name buffer)))
-      (when (string-match-p "-autoloads.el" name)
-        (kill-buffer buffer)
-        (message "Killed autoloads buffer %s" name)))))
+(use-package compile)
 
 ;;; tramp
 ;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs

@@ -149,6 +149,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+  '(whitespace-style
+   (quote
+    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
  '(connection-local-criteria-alist
    '(((:application eshell)
       eshell-connection-default-profile)

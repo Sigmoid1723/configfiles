@@ -10,7 +10,7 @@
 
 (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
-;; Package install 
+;; Package install
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (require 'package)
@@ -66,7 +66,7 @@
 (scroll-bar-mode 0)
 
 ;; line no
-(global-display-line-numbers-mode t)
+(global-display-line-numbers-mode)
 (setq display-line-numbers-type 'relative)
 
 ;; Disable line numbers for some modes
@@ -127,7 +127,7 @@
   :ensure t
   :bind(("M-p" . move-text-up)
 	("M-n" . move-text-down)))
-  
+
 ;; duplicate line (very usefull)
 (defun rc/duplicate-line ()
   "Duplicate current line"
@@ -142,6 +142,7 @@
     (forward-char column)))
 
 (global-set-key (kbd "C-,") 'rc/duplicate-line)
+(global-set-key (kbd "C-.") 'duplicate-dwim)
 
 ;; Theme
 (custom-set-variables
@@ -152,11 +153,12 @@
   '(whitespace-style
    (quote
     (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
- '(connection-local-criteria-alist
-   '(((:application eshell)
-      eshell-connection-default-profile)
-     ((:application tramp)
-      tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
+   '(display-line-numbers-type (quote relative))
+  '(connection-local-criteria-alist
+    '(((:application eshell)
+       eshell-connection-default-profile)
+      ((:application tramp)
+       tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
  '(connection-local-profile-alist
    '((eshell-connection-default-profile
       (eshell-path-env-list))
@@ -269,7 +271,7 @@
 ;; white space mode
 (defun rc/set-up-whitespace-handling ()
   (interactive)
-  (whitespace-mode 1)
+  (whitespace-mode 0)
   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
 (add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
@@ -302,7 +304,7 @@
 
 ;; window movement
 (global-set-key (kbd "M-<left>") 'other-window)
-(global-set-key (kbd "M-<right>") 'other-window) 
+(global-set-key (kbd "M-<right>") 'other-window)
 
 ;; kill autoload buffers
 (defun rc/kill-autoloads-buffers ()
@@ -395,6 +397,3 @@
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 40 1000 1000))
-
-
-

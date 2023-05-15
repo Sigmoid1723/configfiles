@@ -5,8 +5,9 @@
 IMAGE=/tmp/lockscreen.png
 TEXT=/tmp/locktext.png
 ICON=/$HOME/Downloads/icon.png
- 
-scrot $IMAGE
+
+rm $IMAGE
+scrot -F $IMAGE
 convert $IMAGE -scale 10% -scale 1000% -fill black -colorize 25% $IMAGE
 # [ -f $TEXT ] || { 
 #     convert -size 3000x60 xc:white -font monospace -pointsize 26 -fill black -gravity center -annotate +0+0 'Type password to unlock' $TEXT;

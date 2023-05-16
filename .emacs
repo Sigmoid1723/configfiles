@@ -1,5 +1,5 @@
 ;; The default is 800 kilobytes.  Measured in bytes.
-(setq gc-cons-threshold (* 80 1000 1000))
+(setq gc-cons-threshold (* 100 1024 1024))
 
 (defun efs/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
@@ -150,15 +150,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-  '(whitespace-style
-   (quote
-    (face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
-   '(display-line-numbers-type (quote relative))
-  '(connection-local-criteria-alist
-    '(((:application eshell)
-       eshell-connection-default-profile)
-      ((:application tramp)
-       tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
+ '(connection-local-criteria-alist
+   '(((:application eshell)
+      eshell-connection-default-profile)
+     ((:application tramp)
+      tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
  '(connection-local-profile-alist
    '((eshell-connection-default-profile
       (eshell-path-env-list))
@@ -237,8 +233,11 @@
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
    '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
+ '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme)))
+   '(csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
+ '(whitespace-style
+   '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -258,49 +257,49 @@
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
-;; yasnippet
-(use-package yasnippet
-  :after interactive
-  :ensure t
-  :custom
-  (setq yas/triggers-in-field nil)
-  (setq yas-snippet-dirs '("~/.emacs.snippets/")))
+;; ;; yasnippet
+;; (use-package yasnippet
+;;   :after interactive
+;;   :ensure t
+;;   :custom
+;;   (setq yas/triggers-in-field nil)
+;;   (setq yas-snippet-dirs '("~/.emacs.snippets/")))
 
-(yas-global-mode 1)
+;; (yas-global-mode 1)
 
-;; white space mode
-(defun rc/set-up-whitespace-handling ()
-  (interactive)
-  (whitespace-mode 0)
-  (add-to-list 'write-file-functions 'delete-trailing-whitespace))
+;; ;; white space mode
+;; (defun rc/set-up-whitespace-handling ()
+;;   (interactive)
+;;   (whitespace-mode 0)
+;;   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
-(add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'simpc-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
-(add-hook 'java-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'rust-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'scala-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'markdown-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'haskell-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'python-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'erlang-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'asm-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'nasm-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'go-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'nim-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'yaml-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'porth-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'simpc-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
+;; (add-hook 'java-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'rust-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'scala-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'markdown-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'haskell-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'python-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'erlang-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'asm-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'nasm-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'go-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'nim-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'yaml-mode-hook 'rc/set-up-whitespace-handling)
+;; (add-hook 'porth-mode-hook 'rc/set-up-whitespace-handling)
 
-;; paredit mode
-(use-package paredit)
-(defun rc/turn-on-paredit ()
-  (interactive)
-  (paredit-mode 1))
+;; ;; paredit mode
+;; (use-package paredit)
+;; (defun rc/turn-on-paredit ()
+;;   (interactive)
+;;   (paredit-mode 1))
 
-(add-hook 'emacs-lisp-mode-hook  'rc/turn-on-paredit)
+;; (add-hook 'emacs-lisp-mode-hook  'rc/turn-on-paredit)
 
 ;; window movement
 (global-set-key (kbd "M-<left>") 'other-window)
@@ -396,4 +395,4 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Make gc pauses faster by decreasing the threshold.
-(setq gc-cons-threshold (* 40 1000 1000))
+(setq gc-cons-threshold (* 40 1024 1024))

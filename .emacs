@@ -90,17 +90,9 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'buffer-menu)
 
-
-;; Pretty line below
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode 1))
-
-;; Icon
-;;(use-package all-the-icons)
-
 ;; Git
 (use-package magit
+  :defer 3
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -235,7 +227,7 @@
    '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
+   '(helm-ls-git helm-git-grep helm-cmd-t helm csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
  '(whitespace-style
    '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
@@ -257,49 +249,27 @@
  '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
  '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 
-;; ;; yasnippet
-;; (use-package yasnippet
-;;   :after interactive
-;;   :ensure t
-;;   :custom
-;;   (setq yas/triggers-in-field nil)
-;;   (setq yas-snippet-dirs '("~/.emacs.snippets/")))
+;; yasnippet
+(use-package yasnippet
+  :after interactive
+  :ensure t
+  :custom
+  (setq yas/triggers-in-field nil)
+  (setq yas-snippet-dirs '("~/.emacs.snippets/")))
 
-;; (yas-global-mode 1)
+(yas-global-mode 1)
 
-;; ;; white space mode
-;; (defun rc/set-up-whitespace-handling ()
-;;   (interactive)
-;;   (whitespace-mode 0)
-;;   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
-
-;; (add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'simpc-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
-;; (add-hook 'java-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'rust-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'scala-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'markdown-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'haskell-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'python-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'erlang-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'asm-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'nasm-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'go-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'nim-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'yaml-mode-hook 'rc/set-up-whitespace-handling)
-;; (add-hook 'porth-mode-hook 'rc/set-up-whitespace-handling)
-
-;; ;; paredit mode
-;; (use-package paredit)
-;; (defun rc/turn-on-paredit ()
-;;   (interactive)
-;;   (paredit-mode 1))
-
-;; (add-hook 'emacs-lisp-mode-hook  'rc/turn-on-paredit)
+;;; helm
+(use-package helm
+  :defer 3
+  :commands helm-cmd-t helm-git-grep helm-ls-git
+  :custom (setq helm-ff-transformer-show-only-basename nil)
+  (global-set-key (kbd "C-c h t") 'helm-cmd-t)
+  (global-set-key (kbd "C-c h g g") 'helm-git-grep)
+  (global-set-key (kbd "C-c h g l") 'helm-ls-git-ls)
+  (global-set-key (kbd "C-c h f") 'helm-find)
+  (global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
+  (global-set-key (kbd "C-c h r") 'helm-recentf))
 
 ;; window movement
 (global-set-key (kbd "M-<left>") 'other-window)
@@ -317,81 +287,116 @@
 ;; Company mode(for autofilling)
 (use-package company
   :ensure t
+  :defer 3
   :config (global-company-mode 1))
 
 ;; Packages that don't require
 (use-package scala-mode
-  :commands scala-mode)
+  :commands scala-mode
+  :defer 3)
 (use-package d-mode
-  :commands d-mode)
+  :commands d-mode
+  :defer 3)
 (use-package yaml-mode
-  :commands yaml-mode)
+  :commands yaml-mode
+  :defer 3)
 (use-package glsl-mode
-  :commands glsl-mode)
+  :commands glsl-mode
+  :defer 3)
 (use-package tuareg
-  :commands tuareg)
+  :commands tuareg
+  :defer 3)
 (use-package lua-mode
-  :commands lua-mode)
+  :commands lua-mode
+  :defer 3)
 (use-package less-css-mode
-  :commands less-css-mode)
+  :commands less-css-mode
+  :defer 3)
 (use-package graphviz-dot-mode
-  :commands graphviz-dot-mode)
+  :commands graphviz-dot-mode
+  :defer 3)
 (use-package clojure-mode
-  :commands clojure-mode)
+  :commands clojure-mode
+  :defer 3)
 (use-package cmake-mode
-  :commands cmake-mode)
+  :commands cmake-mode
+  :defer 3)
 (use-package rust-mode
-  :commands rust-mode)
-(use-package csharp-mode
-  :commands csharp-mode)
+  :commands rust-mode
+  :defer 3)
+;; (use-package csharp-mode
+;;   :commands csharp-mode
+;;   :defer 3)
 (use-package nim-mode
-  :commands nim-mode)
+  :commands nim-mode
+  :defer 3)
 (use-package jinja2-mode
-  :commands jinja2-mode)
+  :commands jinja2-mode
+  :defer 3)
 (use-package markdown-mode
-  :commands markdown-mode)
+  :commands markdown-mode
+  :defer 3)
 (use-package purescript-mode
-  :commands purescript-mode)
+  :commands purescript-mode
+  :defer 3)
 (use-package nix-mode
-  :commands nix-mode)
+  :commands nix-mode
+  :defer 3)
 (use-package dockerfile-mode
-  :commands dockerfile-mode)
+  :commands dockerfile-mode
+  :defer 3)
 ;; (use-package love-minor-mode
-;;   :commands love-minor-mode)
+;;   :commands love-minor-mode
+;;:defer 3)
 (use-package toml-mode
-  :commands toml-mode)
+  :commands toml-mode
+  :defer 3)
 (use-package nginx-mode
-  :commands nginx-mode)
+  :commands nginx-mode
+  :defer 3)
 (use-package kotlin-mode
-  :commands kotlin-mode)
+  :commands kotlin-mode
+  :defer 3)
 (use-package go-mode
-  :commands go-mode)
+  :commands go-mode
+  :defer 3)
 (use-package php-mode
-  :commands php-mode)
+  :commands php-mode
+  :defer 3)
 (use-package racket-mode
-  :commands racket-mode)
+  :commands racket-mode
+  :defer 3)
 (use-package qml-mode
-  :commands qml-mode)
+  :commands qml-mode
+  :defer 3)
 (use-package ag
-  :commands ag)
+  :commands ag
+  :defer 3)
 (use-package hindent
- :commands hindent)
+  :commands hindent
+  :defer 3)
 (use-package elpy
- :commands elpy)
+  :commands elpy
+  :defer 3)
 (use-package typescript-mode
- :commands typescript-mode)
+  :commands typescript-mode
+  :defer 3)
 (use-package rfc-mode
- :commands rfc-mode)
+  :commands rfc-mode
+  :defer 3)
 ;; (use-package sml-mode
-;;  :commands sml-mode)
+;;  :commands sml-mode
+;;:defer 3)
 
-(use-package compile)
+(use-package compile
+  :defer 3)
 
 ;;; tramp
 ;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
 (setq tramp-auto-save-directory "/tmp")
 
 ;; confirm before exiting emacs
+
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Make gc pauses faster by decreasing the threshold.

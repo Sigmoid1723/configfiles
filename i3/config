@@ -196,6 +196,7 @@ bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher"{
     bindsym f exec firefox
+    bindsym p exec firefox --private-window
 
     bindsym Escape mode "default"
 }

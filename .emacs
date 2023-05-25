@@ -92,7 +92,8 @@
 
 ;; Git
 (use-package magit
-  :defer 3
+  ;; :defer 0
+
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -227,7 +228,7 @@
    '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(helm-ls-git helm-git-grep helm-cmd-t helm csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
+   '(helm-gtags ggtags helm-ls-git helm-git-grep helm-cmd-t helm csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
  '(whitespace-style
    '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
@@ -261,7 +262,8 @@
 
 ;;; helm
 (use-package helm
-  :defer 3
+  ;; :defer 0
+
   :commands helm-cmd-t helm-git-grep helm-ls-git
   :custom (setq helm-ff-transformer-show-only-basename nil)
   (global-set-key (kbd "C-c h t") 'helm-cmd-t)
@@ -287,117 +289,184 @@
 ;; Company mode(for autofilling)
 (use-package company
   :ensure t
-  :defer 3
+  ;; :defer 0
+
   :config (global-company-mode 1))
 
 ;; Packages that don't require
 (use-package scala-mode
   :commands scala-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package d-mode
   :commands d-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package yaml-mode
   :commands yaml-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package glsl-mode
   :commands glsl-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package tuareg
   :commands tuareg
-  :defer 3)
+  ;; :defer 0
+)
 (use-package lua-mode
   :commands lua-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package less-css-mode
   :commands less-css-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package graphviz-dot-mode
   :commands graphviz-dot-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package clojure-mode
   :commands clojure-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package cmake-mode
   :commands cmake-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package rust-mode
   :commands rust-mode
-  :defer 3)
+  ;; :defer 0
+)
 ;; (use-package csharp-mode
 ;;   :commands csharp-mode
-;;   :defer 3)
+;;   ;; :defer 0
+;;)
 (use-package nim-mode
   :commands nim-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package jinja2-mode
   :commands jinja2-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package markdown-mode
   :commands markdown-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package purescript-mode
   :commands purescript-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package nix-mode
   :commands nix-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package dockerfile-mode
   :commands dockerfile-mode
-  :defer 3)
+  ;; :defer 0
+)
 ;; (use-package love-minor-mode
 ;;   :commands love-minor-mode
-;;:defer 3)
+;;;; :defer 0
+;;)
 (use-package toml-mode
   :commands toml-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package nginx-mode
   :commands nginx-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package kotlin-mode
   :commands kotlin-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package go-mode
   :commands go-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package php-mode
   :commands php-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package racket-mode
   :commands racket-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package qml-mode
   :commands qml-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package ag
   :commands ag
-  :defer 3)
+  ;; :defer 0
+)
 (use-package hindent
   :commands hindent
-  :defer 3)
+  ;; :defer 0
+)
 (use-package elpy
   :commands elpy
-  :defer 3)
+  ;; :defer 0
+)
 (use-package typescript-mode
   :commands typescript-mode
-  :defer 3)
+  ;; :defer 0
+)
 (use-package rfc-mode
   :commands rfc-mode
-  :defer 3)
+  ;; :defer 0
+)
 ;; (use-package sml-mode
 ;;  :commands sml-mode
-;;:defer 3)
+;;;; :defer 0
+;;)
 
 (use-package compile
-  :defer 3)
+  ;; :defer 0
+)
+ 
+;;gg tags
+(use-package ggtags
+  :commands ggtags
+  ;; :defer 0
+  :custom (add-hook 'c-mode-common-hook
+		    (lambda ()
+		      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+			(ggtags-mode 1))))
+  (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+  (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+  (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+  (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+  (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+  (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+  (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
+
+;; Enable helm-gtags-mode
+(use-package helm-gtags
+  :after helm
+  :custom(add-hook 'dired-mode-hook 'helm-gtags-mode)
+  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+  (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+  (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+  (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+  (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history))
+
 
 ;;; tramp
 ;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
-(setq tramp-auto-save-directory "/tmp")
+  (setq tramp-auto-save-directory "/tmp")
 
-;; confirm before exiting emacs
+  ;; confirm before exiting emacs
 
-(setq confirm-kill-emacs 'y-or-n-p)
+  (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Make gc pauses faster by decreasing the threshold.
-(setq gc-cons-threshold (* 40 1024 1024))
+  ;; Make gc pauses faster by decreasing the threshold.
+  (setq gc-cons-threshold (* 40 1024 1024))

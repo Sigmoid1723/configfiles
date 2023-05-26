@@ -2,6 +2,7 @@
 # name: else { ... }
 # key: else
 # --
-else {
-$0
+else
+{
+    $0
 }

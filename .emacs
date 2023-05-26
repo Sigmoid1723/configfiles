@@ -64,6 +64,8 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (scroll-bar-mode 0)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
 
 ;; line no
 (global-display-line-numbers-mode)
@@ -255,8 +257,7 @@
   :after interactive
   :ensure t
   :custom
-  (setq yas/triggers-in-field nil)
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets")))
+  (setq yas/triggers-in-field nil))
 
 (yas-global-mode 1)
 

@@ -256,7 +256,7 @@
   :ensure t
   :custom
   (setq yas/triggers-in-field nil)
-  (setq yas-snippet-dirs '("~/.emacs.snippets/")))
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets")))
 
 (yas-global-mode 1)
 

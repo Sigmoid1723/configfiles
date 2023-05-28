@@ -95,7 +95,6 @@
 ;; Git
 (use-package magit
   ;; :defer 0
-
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -291,7 +290,6 @@
 (use-package company
   :ensure t
   ;; :defer 0
-
   :config (global-company-mode 1))
 
 ;; Packages that don't require
@@ -466,7 +464,6 @@
   (setq tramp-auto-save-directory "/tmp")
 
   ;; confirm before exiting emacs
-
   (setq confirm-kill-emacs 'y-or-n-p)
 
   ;; Make gc pauses faster by decreasing the threshold.

@@ -230,7 +230,7 @@
    '("f74e8d46790f3e07fbb4a2c5dafe2ade0d8f5abc9c203cd1c29c7d5110a85230" "bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(helm-gtags ggtags helm-ls-git helm-git-grep helm-cmd-t helm csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
+   '(ggtags helm-cmd-t csharp-mode sml-mode rfc-mode typescript-mode elpy hindent ag qml-mode racket-mode php-mode go-mode kotlin-mode nginx-mode toml-mode love-minor-mode dockerfile-mode nix-mode purescript-mode jinja2-mode nim-mode rust-mode cmake-mode clojure-mode graphviz-dot-mode lua-mode tuareg glsl-mode yaml-mode d-mode scala-mode paredit yasnippet gruvbox-theme move-text unicode-fonts doom-themes command-log-mode all-the-icons ivy smex forge visual-fill-column org-bullets avy zenburn-theme use-package rainbow-delimiters multiple-cursors sqlite3 gruber-darker-theme))
  '(whitespace-style
    '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark)))
 (custom-set-faces
@@ -261,18 +261,18 @@
 
 (yas-global-mode 1)
 
-;;; helm
-(use-package helm
-  ;; :defer 0
+;; ;;; helm
+;; (use-package helm
+;;   ;; :defer 0
 
-  :commands helm-cmd-t helm-git-grep helm-ls-git
-  :custom (setq helm-ff-transformer-show-only-basename nil)
-  (global-set-key (kbd "C-c h t") 'helm-cmd-t)
-  (global-set-key (kbd "C-c h g g") 'helm-git-grep)
-  (global-set-key (kbd "C-c h g l") 'helm-ls-git-ls)
-  (global-set-key (kbd "C-c h f") 'helm-find)
-  (global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
-  (global-set-key (kbd "C-c h r") 'helm-recentf))
+;;   :commands helm-cmd-t helm-git-grep helm-ls-git
+;;   :custom (setq helm-ff-transformer-show-only-basename nil)
+;;   (global-set-key (kbd "C-c h t") 'helm-cmd-t)
+;;   (global-set-key (kbd "C-c h g g") 'helm-git-grep)
+;;   (global-set-key (kbd "C-c h g l") 'helm-ls-git-ls)
+;;   (global-set-key (kbd "C-c h f") 'helm-find)
+;;   (global-set-key (kbd "C-c h a") 'helm-org-agenda-files-headings)
+;;   (global-set-key (kbd "C-c h r") 'helm-recentf))
 
 ;; window movement
 (global-set-key (kbd "M-<left>") 'other-window)
@@ -435,7 +435,7 @@
   :custom (add-hook 'c-mode-common-hook
 		    (lambda ()
 		      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-			(ggtags-mode 1))))
+			(ggtags-mode t))))
   (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
   (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
   (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
@@ -445,20 +445,20 @@
   (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
 
 ;; Enable helm-gtags-mode
-(use-package helm-gtags
-  :after helm
-  :custom(add-hook 'dired-mode-hook 'helm-gtags-mode)
-  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+;; (use-package helm-gtags
+;;   :after helm
+;;   :custom(add-hook 'dired-mode-hook 'helm-gtags-mode)
+;;   (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+;;   (add-hook 'c-mode-hook 'helm-gtags-mode)
+;;   (add-hook 'c++-mode-hook 'helm-gtags-mode)
+;;   (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
-  (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-  (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
-  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-  (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-  (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history))
+;;   (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+;;   (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+;;   (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+;;   (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+;;   (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+;;   (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history))
 
 
 ;;; tramp

@@ -84,7 +84,6 @@
 ;; backup emacs
 (setq backup-directory-alist '(("." . "~/.emacs_show")))
 
-
 ;; keybindings.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'buffer-menu)

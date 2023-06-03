@@ -84,10 +84,6 @@
 ;; backup emacs
 (setq backup-directory-alist '(("." . "~/.emacs_show")))
 
-;; ;; To saves which command im typing(optional)
-;; (use-package command-log-mode
-;;   :commands command-log-mode)
-
 ;; keybindings.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'buffer-menu)

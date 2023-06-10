@@ -89,6 +89,10 @@
 ;;theme
 (load-theme 'gruber-darker t)
 
+;;mode enable
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 ;; Packages that don't require
 (use-package scala-mode
   :commands scala-mode
@@ -246,3 +250,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+

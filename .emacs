@@ -1,14 +1,14 @@
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 100 1024 1024))
 
-(defun efs/display-startup-time ()
-  (message "Emacs loaded in %s with %d garbage collections."
-	   (format "%.2f seconds"
-		   (float-time
-		    (time-subtract after-init-time before-init-time)))
-	   gcs-done))
+;; (defun efs/display-startup-time ()
+;;   (message "Emacs loaded in %s with %d garbage collections."
+;; 	   (format "%.2f seconds"
+;; 		   (float-time
+;; 		    (time-subtract after-init-time before-init-time)))
+;; 	   gcs-done))
 
-(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+;; (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
 ;; Package install
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -92,15 +92,6 @@
 
 ;; optional key binding
    (global-set-key "\C-c\C-k" 'copy-line)
-
-;; assembly setup
-(defun my-asm-mode-hook ()
-  ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway
-  (local-unset-key (vector asm-comment-char))
-  ;; asm-mode sets it locally to nil, to "stay closer to the old TAB behaviour".
-  (setq tab-always-indent (default-value 'tab-always-indent)))
-
-(add-hook 'asm-mode-hook #'my-asm-mode-hook)
 
 ;;theme
 (use-package gruber-darker-theme)
@@ -244,18 +235,6 @@
   ;; :defer 2
   )
 
-;; add language hook eglot
-;; (use-package eglot)
-;; (add-hook 'c-mode 'eglot-ensure)
-;; (add-hook 'asm-mode 'eglot-ensure)
-;; (with-eval-after-load 'eglot
-;;   (add-to-list 'eglot-server-programs
-;;           '(asm-mode . ("asm-lsp" :initializationOptions
-;;                         (:compilationDatabasePath "/tmp")))))
-;; ;; (delete 'eglot-server-programs
-;; ;;           '(asm-mode "asm-lsp")))
-
-
 ;;; tramp
 ;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs
   (setq tramp-auto-save-directory "/tmp")
@@ -263,8 +242,6 @@
   ;; confirm before exiting emacs
   (setq confirm-kill-emacs 'y-or-n-p)
 
-  ;; Make gc pauses faster by decreasing the threshold.
-(setq gc-cons-threshold (* 40 1024 1024))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -280,3 +257,6 @@
  ;; If there is more than one, they won't work right.
  )
 
+
+  ;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 40 1024 1024))

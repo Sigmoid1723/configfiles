@@ -31,10 +31,10 @@
 (setq use-package-always-ensure t)
 
 ;; load all the files
-(load "~/.emacs.rc/org-mode-rc.el")
-(load "~/.emacs.rc/emacs-misc-rc.el")
-(load "~/.emacs.rc/emacs-git-rc.el")
-(load "~/.emacs.rc/emacs-format-rc.el")
+(load "/home/ds/.emacs.rc/org-mode-rc.el")
+(load "/home/ds/.emacs.rc/emacs-misc-rc.el")
+(load "/home/ds/.emacs.rc/emacs-git-rc.el")
+(load "/home/ds/.emacs.rc/emacs-format-rc.el")
 
 ;; font character and symbols to show in term mode
 (set-face-attribute 'default nil
@@ -48,10 +48,6 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (scroll-bar-mode 0)
-
-;; add language hook eglot
-;; (use-package eglot)
-(add-hook 'c-mode 'eglot-ensure)
 
 ;; sqlite3
 (require 'sqlite3)
@@ -76,7 +72,7 @@
 (ido-everywhere 1)
 
 ;; backup emacs
-(setq backup-directory-alist '(("." . "~/.emacs_show")))
+(setq backup-directory-alist '(("." . "/home/ds/.emacs_show")))
 
 ;; keybindings.
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -97,7 +93,17 @@
 ;; optional key binding
    (global-set-key "\C-c\C-k" 'copy-line)
 
+;; assembly setup
+(defun my-asm-mode-hook ()
+  ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway
+  (local-unset-key (vector asm-comment-char))
+  ;; asm-mode sets it locally to nil, to "stay closer to the old TAB behaviour".
+  (setq tab-always-indent (default-value 'tab-always-indent)))
+
+(add-hook 'asm-mode-hook #'my-asm-mode-hook)
+
 ;;theme
+(use-package gruber-darker-theme)
 (load-theme 'gruber-darker t)
 
 ;;mode enable
@@ -236,7 +242,19 @@
 
 (use-package compile
   ;; :defer 2
-)
+  )
+
+;; add language hook eglot
+;; (use-package eglot)
+;; (add-hook 'c-mode 'eglot-ensure)
+;; (add-hook 'asm-mode 'eglot-ensure)
+;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;           '(asm-mode . ("asm-lsp" :initializationOptions
+;;                         (:compilationDatabasePath "/tmp")))))
+;; ;; (delete 'eglot-server-programs
+;; ;;           '(asm-mode "asm-lsp")))
+
 
 ;;; tramp
 ;;; http://stackoverflow.com/questions/13794433/how-to-disable-autosave-for-tramp-buffers-in-emacs

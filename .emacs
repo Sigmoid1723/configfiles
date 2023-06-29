@@ -41,6 +41,16 @@
                     ;; :font "FiraCode Nerd Font-12")
                     :font "Iosevka-14")
 
+;; set proper language (fixes cyrillic letters in ansi-term)
+(setenv "LANG" "en_IN.UTF-8")
+
+;; font for all unicode characters
+(set-fontset-font t 'unicode "Firacode Nerd Font" nil 'prepend)
+
+;; ;; override font for cyrillic characters
+;; (set-fontset-font t 'cyrillic "Droid Sans Mono")
+
+
 ;; basic config
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -82,17 +92,6 @@
 (global-set-key (kbd "M-<left>") 'other-window)
 (global-set-key (kbd "M-<right>") 'other-window)
 
-;;copy line
-(defun copy-line (arg)
-      "Copy lines (as many as prefix argument) in the kill ring"
-      (interactive "p")
-      (kill-ring-save (line-beginning-position)
-                      (line-beginning-position (+ 1 arg)))
-      (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
-
-;; optional key binding
-   (global-set-key "\C-c\C-k" 'copy-line)
-
 ;;theme
 (use-package gruber-darker-theme)
 (load-theme 'gruber-darker t)
@@ -100,6 +99,11 @@
 ;;mode enable
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+
+;; NASM mode
+(use-package nasm-mode)
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
 
 ;; Packages that don't require
 (use-package scala-mode
@@ -249,7 +253,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default)))
+   '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
+ '(package-selected-packages
+   '(nasm-mode forge ggtags nix-mode move-text nim-mode lua-mode purescript-mode popup unicode-fonts yaml-mode nginx-mode racket-mode autothemer async glsl-mode command-log-mode all-the-icons ivy smex ag tuareg dockerfile-mode toml-mode elpy cmake-mode visual-fill-column kotlin-mode clojure-mode jinja2-mode graphviz-dot-mode csharp-mode rfc-mode org-bullets avy go-mode rust-mode typescript-mode php-mode d-mode use-package rainbow-delimiters multiple-cursors hindent scala-mode qml-mode paredit sqlite3 gruber-darker-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

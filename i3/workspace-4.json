@@ -1,28 +1,5 @@
 // vim:ts=4:sw=4:et
 {
-    "border": "normal",
-    "current_border_width": 2,
-    "floating": "auto_off",
-    "geometry": {
-       "height": 731,
-       "width": 1366,
-       "x": 0,
-       "y": 18
-    },
-    "marks": [],
-    "name": "Source Window",
-    "percent": 1,
-    "swallows": [
-       {
-       // "class": "^Toplevel$",
-       // "instance": "^srcwin0$",
-       // "title": "^Source\\ Window$"
-       }
-    ],
-    "type": "con"
-}
-
-{
     // floating_con with 1 children
     "border": "normal",
     "floating": "auto_off",
@@ -30,10 +7,10 @@
     "marks": [],
     "percent": null,
     "rect": {
-       "height": 396,
-       "width": 336,
-       "x": 1032,
-       "y": 122
+       "height": 243,
+       "width": 1370,
+       "x": 4,
+       "y": 509
     },
     "type": "floating_con",
     "nodes": [
@@ -42,19 +19,19 @@
             "current_border_width": 2,
             "floating": "user_on",
             "geometry": {
-               "height": 376,
-               "width": 332,
-               "x": 1032,
-               "y": 140
+               "height": 223,
+               "width": 1366,
+               "x": 4,
+               "y": 527
             },
             "marks": [],
-            "name": "Registers",
+            "name": "Memory",
             "percent": 1,
             "swallows": [
                {
                // "class": "^Toplevel$",
-               // "instance": "^regwin0$",
-               // "title": "^Registers$"
+               // "instance": "^memwin0$",
+               // "title": "^Memory$"
                }
             ],
             "type": "con"
@@ -70,10 +47,10 @@
     "marks": [],
     "percent": null,
     "rect": {
-       "height": 233,
-       "width": 1370,
+       "height": 514,
+       "width": 1032,
        "x": 0,
-       "y": 515
+       "y": 0
     },
     "type": "floating_con",
     "nodes": [
@@ -82,19 +59,59 @@
             "current_border_width": 2,
             "floating": "user_on",
             "geometry": {
-               "height": 213,
-               "width": 1366,
-               "x": 3,
-               "y": 532
+               "height": 494,
+               "width": 1028,
+               "x": 0,
+               "y": 18
             },
             "marks": [],
-            "name": "Memory",
+            "name": "Source Window",
             "percent": 1,
             "swallows": [
                {
                // "class": "^Toplevel$",
-               // "instance": "^memwin0$",
-               // "title": "^Memory$"
+               // "instance": "^srcwin0$",
+               // "title": "^Source\\ Window$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    // floating_con with 1 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": null,
+    "rect": {
+       "height": 511,
+       "width": 343,
+       "x": 1032,
+       "y": 1
+    },
+    "type": "floating_con",
+    "nodes": [
+        {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "user_on",
+            "geometry": {
+               "height": 409,
+               "width": 334,
+               "x": 1030,
+               "y": 101
+            },
+            "marks": [],
+            "name": "Registers",
+            "percent": 1,
+            "swallows": [
+               {
+               // "class": "^Toplevel$",
+               // "instance": "^regwin0$",
+               // "title": "^Registers$"
                }
             ],
             "type": "con"

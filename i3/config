@@ -37,7 +37,7 @@ exec --no-startup-id nm-applet
 
 # Open some program when starting i3
 exec --no-startup-id sh -c 'sleep 0; i3-msg "workspace 3; exec firefox"'
-exec --no-startup-id sh -c 'sleep 0.2; i3-msg "workspace 1; exec xdg-open ~/Downloads/Jeff\ Duntemann\ -\ Assembly\ Language\ Step-By-Step_\ Programming\ with\ Linux-Wiley\ \(2009\).pdf"'
+exec --no-startup-id sh -c 'sleep 0.2; i3-msg "workspace 1; exec xdg-open ~/Downloads/\(Scott\ Foresman\ Assembly\ Language\ Programming\ Series\)\ Michael\ Abrash\ -\ Zen\ of\ Assembly\ Language_\ Knowledge-Scott\ Foresman\ Trade\ \(1990\).pdf "'
 exec --no-startup-id sh -c 'sleep 0.4; i3-msg "workspace 2; exec emacs"'
 # exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace 1"'
 
@@ -160,6 +160,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="Toplevel"] $ws4
 for_window [class="Toplevel" instance="regwin0"] floating enable
 for_window [class="Toplevel" instance="memwin0"] floating enable
+for_window [class="Toplevel" instance="srcwin0"] floating enable
+for_window [class="Toplevel" instance="console0"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

@@ -1,0 +1,13 @@
+# -*- mode:snippet -*-
+# name: makes
+# key:makes
+# expand-env: ((yas-indent-line 'fixed))
+# --
+CFLAGS= -f ${1:-elf} -g -F stabs
+MODE=$2
+LINKER= ${3:ld}
+$5: $4.o
+    $(LINKER) $(MODE) -o $5 $4.o
+
+$4.o: $4.asm
+    nasm $(CFLAGS) -o $4.o -l $4.lst

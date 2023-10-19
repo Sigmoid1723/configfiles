@@ -8,4 +8,4 @@ CFLAGS=-Wall -Wextra -std=c11 -pedantic
 LIBS=$2
 
 $3: $4
-	$(CC) $(CFLAGS) -o $3 $4 $(LIBS)
+    $(CC) $(CFLAGS) -o $3 $4 $(LIBS)

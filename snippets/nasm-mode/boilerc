@@ -11,18 +11,18 @@
 
 [SECTION .text]                 ; Section containing code
 					
-global main                     ; Required so linker can find entry point
+global ${1:main}                     ; Required so linker can find entry point
 	
-main:
+${1:main}:
     push ebp                    ; Set up stack frame for debugger
 	mov ebp,esp
     push ebx                    ; Program must preserve ebp, ebx, esi, & edi
 	push esi
 	push edi
 	;;; Everything before this is boilerplate; use it for all ordinary apps!	
-    $0
 
-	
+    $0
+    
 	;;; Everything after this is boilerplate; use it for all ordinary apps!
 	pop edi                     ; Restore saved registers
 	pop esi                     

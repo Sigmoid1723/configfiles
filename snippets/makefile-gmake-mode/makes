@@ -3,11 +3,11 @@
 # key:makes
 # expand-env: ((yas-indent-line 'fixed))
 # --
-CFLAGS= -f ${1:-elf} -g -F stabs
-MODE=$2
+CFLAGS= -f ${1:elf} -g -F stabs
+MODE= ${2:-m32}
 LINKER= ${3:ld}
-$5: $4.o
-    $(LINKER) $(MODE) -o $5 $4.o
+$4: $5.o
+	$(LINKER) $(MODE) -o $4 $5.o
 
-$4.o: $4.asm
-    nasm $(CFLAGS) -o $4.o -l $4.lst
+$5.o: $5.asm
+	nasm $(CFLAGS) -o $5.o $5.asm -l $5.lst

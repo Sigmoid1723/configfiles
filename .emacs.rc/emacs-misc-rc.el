@@ -10,6 +10,12 @@
         (kill-buffer buffer)
         (message "Killed autoloads buffer %s" name)))))
 
+;;eglot
+;; (require 'eglot)
+;; (add-hook 'c-mode-hook 'eglot-ensure)  
+;; (add-hook 'c++-mode-hook 'eglot-ensure)
+;; (add-to-list 'eglot-server-programs '((c++-mode) "ccls"))
+
 ;; assembly setup
 (defun my-asm-mode-hook ()
   ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway

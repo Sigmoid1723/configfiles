@@ -60,7 +60,7 @@
 (scroll-bar-mode 0)
 
 ;; sqlite3
-(require 'sqlite3)
+;; (require 'sqlite3)
 
 (add-hook 'term-exec-hook
           (function
@@ -254,7 +254,7 @@
  '(custom-safe-themes
    '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(package-selected-packages
-   '(magit java-imports android-env ## android-mode nasm-mode ggtags nix-mode move-text nim-mode lua-mode purescript-mode popup unicode-fonts yaml-mode nginx-mode racket-mode autothemer async glsl-mode command-log-mode all-the-icons ivy smex ag tuareg dockerfile-mode toml-mode elpy cmake-mode visual-fill-column kotlin-mode clojure-mode jinja2-mode graphviz-dot-mode csharp-mode rfc-mode org-bullets avy go-mode rust-mode typescript-mode php-mode d-mode use-package rainbow-delimiters multiple-cursors hindent scala-mode qml-mode paredit sqlite3 gruber-darker-theme))
+   '(haskell-mode lsp-java magit java-imports android-env ## android-mode nasm-mode ggtags nix-mode move-text nim-mode lua-mode purescript-mode popup unicode-fonts yaml-mode nginx-mode racket-mode autothemer async glsl-mode command-log-mode all-the-icons ivy smex ag tuareg dockerfile-mode toml-mode elpy cmake-mode visual-fill-column kotlin-mode clojure-mode jinja2-mode graphviz-dot-mode csharp-mode rfc-mode org-bullets avy go-mode rust-mode typescript-mode php-mode d-mode use-package rainbow-delimiters multiple-cursors hindent scala-mode qml-mode paredit sqlite3 gruber-darker-theme))
  '(warning-suppress-log-types '((use-package) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

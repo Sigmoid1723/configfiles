@@ -57,3 +57,14 @@
   :ensure t
   ;; :defer 2
   :config (global-company-mode 1))
+
+;; Haskell mode
+(use-package haskell-mode) 
+
+(setq haskell-process-type 'cabal-new-repl)
+(setq haskell-process-log t)
+
+(add-hook 'haskell-mode-hook 'haskell-indent-mode)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'hindent-mode)

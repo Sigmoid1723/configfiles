@@ -38,11 +38,9 @@ exec --no-startup-id nm-applet
 
 # Open some program when starting i3
 exec --no-startup-id sh -c 'sleep 0; i3-msg "workspace 3; exec firefox"'
-exec --no-startup-id sh -c 'sleep 0.2; i3-msg "workspace 1; exec xdg-open ~/Downloads/Books/GATE/10_Computer\ Networks/Computer_Networks.pdf "'
-exec --no-startup-id sh -c 'sleep 0.4; i3-msg "workspace 2; exec xdg-open /home/ds/Downloads/Books/GATE/Syllabus\ topics.PNG"'
-exec --no-startup-id sh -c 'sleep 0.5; i3-msg "workspace 2; exec xdg-open /home/ds/Downloads/Books/GATE/cs.pdf"'
-# exec --no-startup-id sh -c 'sleep 0.4; i3-msg "workspace 2; exec emacs"'
-# exec --no-startup-id sh -c 'sleep 1; i3-msg "workspace 1"'
+exec --no-startup-id sh -c 'sleep 0.2; i3-msg "workspace 1; exec xdg-open ~/Downloads/Books/Programming/Haskell/Haskell\ Programming.pdf "'
+exec --no-startup-id sh -c 'sleep 0.2; i3-msg "workspace 1; exec xdg-open ~/Downloads/Books/linux/Love\ R.\ -\ Linux\ Kernel\ Development\ \(3rd\ Edition\).pdf "'
+exec --no-startup-id sh -c 'sleep 0.4; i3-msg "workspace 2; exec emacs"'
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

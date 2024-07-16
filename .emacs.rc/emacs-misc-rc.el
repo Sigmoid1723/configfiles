@@ -1,7 +1,8 @@
+;; Set default tab width and indentation
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
-;; kill autoload buffers
+;; Kill autoload buffers
 (defun rc/kill-autoloads-buffers ()
   (interactive)
   (dolist (buffer (buffer-list))
@@ -16,55 +17,50 @@
 ;; (add-hook 'c++-mode-hook 'eglot-ensure)
 ;; (add-to-list 'eglot-server-programs '((c++-mode) "ccls"))
 
-;; assembly setup
+;; Assembly setup
 (defun my-asm-mode-hook ()
-  ;; you can use `comment-dwim' (M-;) for this kind of behaviour anyway
+  ;; You can use `comment-dwim' (M-;) for this kind of behaviour anyway
   (local-unset-key (vector asm-comment-char))
   ;; asm-mode sets it locally to nil, to "stay closer to the old TAB behaviour".
   (setq tab-always-indent (default-value 'tab-always-indent)))
 
 (add-hook 'asm-mode-hook #'my-asm-mode-hook)
- 
-;;gg tags
+
+;; Ggtags
 (use-package ggtags
-  :commands ggtags
-  ;; :defer 2
-  :custom (add-hook 'c-mode-common-hook
-		    (lambda ()
-		      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-			(ggtags-mode t))))
-  (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-  (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-  (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-  (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-  (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-  (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
-  (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark))
+  :commands (ggtags-mode ggtags-find-other-symbol ggtags-view-tag-history ggtags-find-reference
+                         ggtags-find-file ggtags-create-tags ggtags-update-tags pop-tag-mark)
+  :hook (c-mode-common . (lambda ()
+                           (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                             (ggtags-mode 1))))
+  :bind (:map ggtags-mode-map
+              ("C-c g s" . ggtags-find-other-symbol)
+              ("C-c g h" . ggtags-view-tag-history)
+              ("C-c g r" . ggtags-find-reference)
+              ("C-c g f" . ggtags-find-file)
+              ("C-c g c" . ggtags-create-tags)
+              ("C-c g u" . ggtags-update-tags)
+              ("M-," . pop-tag-mark)))
 
-
-;; yasnippet
+;; Yasnippet
 (use-package yasnippet
-  :after interactive
   :ensure t
-  ;; :defer 2
+  :hook (after-init . yas-global-mode)
   :custom
-  (setq yas/triggers-in-field nil))
+  (yas/triggers-in-field nil))
 
-(yas-global-mode 1)
-
-;; Company mode(for autofilling)
+;; Company mode (for autofilling)
 (use-package company
   :ensure t
-  ;; :defer 2
-  :config (global-company-mode 1))
+  :hook (after-init . global-company-mode))
 
 ;; Haskell mode
-(use-package haskell-mode) 
-
-(setq haskell-process-type 'cabal-new-repl)
-(setq haskell-process-log t)
-
-(add-hook 'haskell-mode-hook 'haskell-indent-mode)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'hindent-mode)
+(use-package haskell-mode
+  :ensure t
+  :hook ((haskell-mode . haskell-indent-mode)
+         (haskell-mode . interactive-haskell-mode)
+         (haskell-mode . haskell-doc-mode)
+         (haskell-mode . hindent-mode))
+  :custom
+  (haskell-process-type 'cabal-new-repl)
+  (haskell-process-log t))

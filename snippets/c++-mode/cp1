@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: cp1
+# key: cp1
+# --
+#include <bits/stdc++.h>
+using namespace std;
+
+$0
+
+int main() {
+
+
+    return 0;
+}

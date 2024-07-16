@@ -1,5 +1,6 @@
 ;; The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 100 1024 1024))
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; (defun efs/display-startup-time ()
 ;;   (message "Emacs loaded in %s with %d garbage collections."
@@ -15,9 +16,9 @@
 
 (require 'package)
 (setq package-archives
-	     '(("melpa" . "https://melpa.org/packages/")
-	       ("org" . "https://orgmode.org/elpa/")
-	       ("elpa" . "https://elpa.gnu.org/packages")))
+	      '(("elpa" . "https://elpa.gnu.org/packages/")
+	        ("melpa" . "https://melpa.org/packages/")
+	        ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless package-archive-contents
@@ -100,9 +101,12 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; (add-hook 'c++-mode-hook 'lsp)
+
 ;; NASM mode
 (use-package nasm-mode)
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode))
+
 
 ;; Packages that don't require
 (use-package scala-mode
@@ -254,7 +258,7 @@
  '(custom-safe-themes
    '("bddf21b7face8adffc42c32a8223c3cc83b5c1bbd4ce49a5743ce528ca4da2b6" default))
  '(package-selected-packages
-   '(haskell-mode lsp-java magit java-imports android-env ## android-mode nasm-mode ggtags nix-mode move-text nim-mode lua-mode purescript-mode popup unicode-fonts yaml-mode nginx-mode racket-mode autothemer async glsl-mode command-log-mode all-the-icons ivy smex ag tuareg dockerfile-mode toml-mode elpy cmake-mode visual-fill-column kotlin-mode clojure-mode jinja2-mode graphviz-dot-mode csharp-mode rfc-mode org-bullets avy go-mode rust-mode typescript-mode php-mode d-mode use-package rainbow-delimiters multiple-cursors hindent scala-mode qml-mode paredit sqlite3 gruber-darker-theme))
+   '(gnu-elpa-keyring-update lsp-mode haskell-mode lsp-java magit java-imports android-env ## android-mode nasm-mode ggtags nix-mode move-text nim-mode lua-mode purescript-mode popup unicode-fonts yaml-mode nginx-mode racket-mode autothemer async glsl-mode command-log-mode all-the-icons ivy smex ag tuareg dockerfile-mode toml-mode elpy cmake-mode visual-fill-column kotlin-mode clojure-mode jinja2-mode graphviz-dot-mode csharp-mode rfc-mode org-bullets avy go-mode rust-mode typescript-mode php-mode d-mode use-package rainbow-delimiters multiple-cursors hindent scala-mode qml-mode paredit sqlite3 gruber-darker-theme))
  '(warning-suppress-log-types '((use-package) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

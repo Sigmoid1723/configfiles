@@ -13,12 +13,6 @@ use {
 use ('mbbill/undotree')
 use ('tpope/vim-fugitive')
 use ('nvim-tree/nvim-tree.lua')
-use {
-  "NvChad/nvterm",
-  config = function ()
-    require("nvterm").setup()
-  end,
-}
 use('sainnhe/gruvbox-material')
 use {"akinsho/toggleterm.nvim", tag = '*', config = function()
   require("toggleterm").setup()
